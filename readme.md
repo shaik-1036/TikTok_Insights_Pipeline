@@ -17,7 +17,8 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
     - [Step 3: Create a Database in AWS Glue \& Set Up Glue Permissions for accessing S3 Bucket](#step-3-create-a-database-in-aws-glue--set-up-glue-permissions-for-accessing-s3-bucket)
     - [Step 4: Create a Table using AWS Glue Crawlers](#step-4-create-a-table-using-aws-glue-crawlers)
     - [Step 5: Create and Run an ETL Job in AWS Glue](#step-5-create-and-run-an-etl-job-in-aws-glue)
-    - [Step 6: Integrate Snowflake with Power BI to Analyze Business Insights](#step-6-integrate-snowflake-with-power-bi-to-analyze-business-insights)
+    - [Step 6: Set Up Snowflake](#step-6-set-up-snowflake)
+    - [Step 7: Integrate Snowflake with Power BI to Analyze Business Insights](#step-7-integrate-snowflake-with-power-bi-to-analyze-business-insights)
   - [**Conclusion**](#conclusion)
 
 ---
@@ -76,7 +77,15 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
 9. Access the Airflow UI at `<EC2_IP>:8080`.
    - Username: airflow
    - Password: airflow
-   
+10. Activating the DAG
+   - In the Airflow UI, navigate to the DAGs tab.
+   - Locate fetch_data_from_earth_quake_api.
+   ![Search_ariflow_ui](images/search_tiktok_pipeline_in_airflow_ui.png)
+   - Toggle it On to activate.
+Steps Executed by the DAG:
+Fetch tiktok  data from the API.
+convert into csv file
+uploading csv file into S3 Bucket.
 ![Airflow UI](images/tiktok_data_pipeline_on_s3.png)
 
 ### Step 2: Set Up S3 Bucket
@@ -87,7 +96,6 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
    
    ![S3 Bucket](images/csv_file_in_s3_bucket.png)
 
-   csv_file_in_s3_bucket.png
 
 ### Step 3: Create a Database in AWS Glue & Set Up Glue Permissions for accessing S3 Bucket
 1. Assign **GlueFullAccess** IAM role permission in IAM Service.
@@ -104,14 +112,17 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
 ### Step 5: Create and Run an ETL Job in AWS Glue
 1. Open AWS Glue console → Jobs → Add Job with Visual ETL.
    ![Glue ETL](images/visual_etl_job_in_glue_console.png)
-2. Select **S3 bucket** (`project1-spotify-dataset`) as the source.
+2. Select **S3 bucket** (`project-with-tiktok-data`) as the source.
 3. Transform data:
    - Drop unnecessary columns.
    - Remove duplicates.
    - Configure target schema for Snowflake.
-4. Select **Amazon DB** in Snowflake as the target.
-5. Configure execution settings and run the job.
-6. Verify the transformed data in Snowflake.
+4. Select **Amazon DB** in Snowflake as the target and enter Snowflake Cerdentials.
+5. Configure execution settings and run the job.it will load data into snowflake 
+
+### Step 6: Set Up Snowflake 
+1. Navigate into the snowflake console with login credentials to Verify the Transformed Data.
+2. Run the below queries in Snowflake notebook to verify the transformed data.
    ```sql
    USE ROLE ACCOUNTADMIN;
    USE WAREHOUSE COMPUTE_WH;
@@ -121,7 +132,7 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
    ```
    ![Snowflake Query](images/Snowflake_query_execution.png)
 
-### Step 6: Integrate Snowflake with Power BI to Analyze Business Insights
+### Step 7: Integrate Snowflake with Power BI to Analyze Business Insights
 1. Open Power BI → Get Data → Select Snowflake.
    ![Power BI Snowflake](images/Get_data_snowflake.png)
 2. Enter Snowflake **server URL** and **warehouse**.
