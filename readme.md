@@ -82,8 +82,12 @@ This project analyzes Spotify data using AWS services such as EC2, S3, Glue, and
 ### Step 2: Set Up S3 Bucket
 1. Navigate to **S3** in AWS Management Console.
 2. Create a new bucket named `project-with-tiktok-data`.
-3. Once the Pipeline run successfully on Airflow UI, Automatically csv file will upload into the S3 Bucket
    ![S3 Bucket](images/create_s3_bucket.png)
+3. Once the Pipeline run successfully on Airflow UI, Automatically csv file will upload into the S3 Bucket
+   
+   ![S3 Bucket](images/csv_file_in_s3_bucket.png)
+
+   csv_file_in_s3_bucket.png
 
 ### Step 3: Create a Database in AWS Glue & Set Up Glue Permissions for accessing S3 Bucket
 1. Assign **GlueFullAccess** IAM role permission in IAM Service.
