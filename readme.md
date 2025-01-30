@@ -102,9 +102,8 @@ uploading csv file into S3 Bucket.
 
 ### Step 3: Create a Database in AWS Glue & Set Up Glue Permissions for accessing S3 Bucket
 1. Assign **GlueFullAccess** IAM role permission in IAM Service.
-2. Go to AWS Glue Console  and create a database named `tiktok`.
-   
-   ![Meta Database](images/create_database_in_datacatalog_at glue_console.png)
+2. Go to AWS Glue Console  and create a database named `tiktok`.   
+   ![Database in data catalog](images/Database_indatacatalog.png)
 
 ### Step 4: Create a Table using AWS Glue Crawlers
 1. Go to AWS Glue console → Crawlers → Add Crawler.
