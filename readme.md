@@ -115,17 +115,17 @@ uploading csv file into S3 Bucket.
 ### Step 5: Set up Snowflake Connection on AWS Glue 
 1. Navigate to AWS Secrets Manager console → Create Secrets.
 2. Create a secret with the following details:
-   Name: "snowflake_credentials
-   Username: snowflake_user_name"
-   Password: snowflake_password
+   - Name: "snowflake_credentials
+   - Username: snowflake_user_name"
+   - Password: snowflake_password
    ![Add aws Secret Manager](images/aws_secret_manager.jpg)
    Click on save & create.
 3. Open AWS Glue Console → Data Catalog → Connections
 4. Click on Add Connection and enter the following details:
-   Name: "snowflake-connection"
-   Connection type: "Snowflake-preview"
-   Snowflake URL: "your_snowflake_server_url"
-   AWS Secret: "snowflake_credentials"
+   - Name: "snowflake-connection"
+   - Connection type: "Snowflake-preview"
+   - Snowflake URL: "your_snowflake_server_url"
+   - AWS Secret: "snowflake_credentials"
    ![Added glue connection with snowflake](images/aws_glue_connections_tab_snowflake.jpg)
    ![aws glue connection with snowflake_2](images/aws_glue_connections_tab_snowflake_2.jpg)
    click on create connection
@@ -139,11 +139,11 @@ uploading csv file into S3 Bucket.
    - Remove duplicates.
    - Configure target schema for Snowflake.
 4. Select Snowflake as the target and enter Some Snowflake Details .
-   Name: Snowflake
-   Snowflake Connection: "snowflake-connection"
-   Database: "Amazon_DB"
-   Schema: "public"
-   Table: "tiktok_data"
+   - Name: Snowflake
+   - Snowflake Connection: "snowflake-connection"
+   - Database: "Amazon_DB"
+   - Schema: "public"
+   - Table: "tiktok_data"
    ![aws glue etl job](images/Etl_job_etl.png)
 5. Configure Job Execution:
    - Specify the following:
